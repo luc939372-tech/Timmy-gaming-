@@ -1,0 +1,117 @@
+# Timmy-gaming-
+Game web
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIMMY GAMING</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090d18;color:#f5f7ff;font-family:Arial,sans-serif}
+header{padding:20px 6%;background:#10182b;border-bottom:1px solid #26344e}
+.logo{font-size:25px;font-weight:900;color:#55d9ff}
+nav{margin-top:15px;display:flex;gap:20px;flex-wrap:wrap}
+a{color:#b9c8e8;text-decoration:none}
+.hero{padding:65px 6%;background:linear-gradient(120deg,#111c3a,#28164b)}
+.hero h1{font-size:clamp(38px,8vw,65px);margin:0 0 15px}
+.hero span{color:#55d9ff}
+p{color:#b9c5dc;line-height:1.6}
+button,input{padding:13px;border-radius:9px;border:0;font-size:15px}
+button{background:#55d9ff;color:#07101c;font-weight:bold;cursor:pointer}
+input{background:#172137;color:white;width:100%;margin:12px 0}
+main{padding:30px 6%}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#111a2d;padding:22px;border:1px solid #263653;border-radius:15px}
+.art{font-size:55px;padding:20px 0}
+.card h3{margin-bottom:5px}
+.card button{width:100%;margin-top:10px}
+.tag{color:#55d9ff;font-size:12px}
+footer{text-align:center;padding:30px;color:#93a1bd}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🎮 TIMMY GAMING</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <p>WELCOME TO YOUR NEXT LEVEL</p>
+  <h1>PLAY MORE.<br><span>LEVEL UP.</span></h1>
+  <p>Discover fun browser games and challenge yourself.</p>
+  <button onclick="document.querySelector('#games').scrollIntoView({behavior:'smooth'})">
+    EXPLORE GAMES ↓
+  </button>
+</section>
+
+<main id="games">
+  <h2>🔥 Game Zone</h2>
+  <p>Find a game and start playing.</p>
+  <input id="search" placeholder="Search games..." oninput="filterGames()">
+
+  <div class="games" id="gameList">
+    <article class="card" data-name="2048 puzzle">
+      <div class="art">🧩</div>
+      <span class="tag">PUZZLE</span>
+      <h3>2048</h3>
+      <p>Combine numbers and reach 2048.</p>
+      <button onclick="play('https://play2048.co/')">PLAY NOW ↗</button>
+    </article>
+
+    <article class="card" data-name="chess strategy">
+      <div class="art">♟️</div>
+      <span class="tag">STRATEGY</span>
+      <h3>Chess</h3>
+      <p>Test your strategy on the chessboard.</p>
+      <button onclick="play('https://lichess.org/')">PLAY NOW ↗</button>
+    </article>
+
+    <article class="card" data-name="sudoku brain">
+      <div class="art">🔢</div>
+      <span class="tag">BRAIN GAME</span>
+      <h3>Sudoku</h3>
+      <p>Challenge your mind with numbers.</p>
+      <button onclick="play('https://sudoku.com/')">PLAY NOW ↗</button>
+    </article>
+
+    <article class="card" data-name="geography quiz">
+      <div class="art">🌍</div>
+      <span class="tag">QUIZ</span>
+      <h3>Geography Quiz</h3>
+      <p>Explore the world and test your knowledge.</p>
+      <button onclick="play('https://www.geoguessr.com/')">PLAY NOW ↗</button>
+    </article>
+  </div>
+  <p id="empty" hidden>No games found. Try another search.</p>
+
+  <section id="about">
+    <h2>About TIMMY GAMING</h2>
+    <p>A gaming website built by a future game developer. More games and features coming soon!</p>
+  </section>
+</main>
+
+<footer>© 2026 TIMMY GAMING · Built for gamers 🎮</footer>
+
+<script>
+function play(url){
+  window.open(url,'_blank','noopener,noreferrer');
+}
+function filterGames(){
+  const q=document.getElementById('search').value.toLowerCase();
+  let count=0;
+  document.querySelectorAll('.card').forEach(card=>{
+    const show=card.dataset.name.includes(q);
+    card.style.display=show?'block':'none';
+    if(show) count++;
+  });
+  document.getElementById('empty').hidden=count!==0;
+}
+</script>
+</body>
+</html>
